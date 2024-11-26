@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import CategoryTypes from '../models/CategoryTypes';
 
-// Get all category types
+//  all category types
 export const getAllCategoryTypes = async (req: Request, res: Response): Promise<void> => {
   try {
     const categoryTypes = await CategoryTypes.findAll();
@@ -15,7 +15,7 @@ export const getAllCategoryTypes = async (req: Request, res: Response): Promise<
   }
 };
 
-// Get a single category type by ID
+//  single category type by ID
 export const getCategoryTypeById = async (req: Request, res: Response): Promise<void> => {
   try {
     const categoryType = await CategoryTypes.findByPk(req.params.id);
@@ -33,7 +33,7 @@ export const getCategoryTypeById = async (req: Request, res: Response): Promise<
   }
 };
 
-// Create a new category type
+// Create new category type
 export const createCategoryType = async (req: Request, res: Response): Promise<void> => {
   try {
     const { type, name, displayRate, primaryDimension, imageUrl } = req.body;
@@ -48,7 +48,7 @@ export const createCategoryType = async (req: Request, res: Response): Promise<v
   }
 };
 
-// Update an existing category type
+// Update existing category type
 export const updateCategoryType = async (req: Request, res: Response): Promise<void> => {
   try {
     const categoryType = await CategoryTypes.findByPk(req.params.id);
@@ -67,7 +67,7 @@ export const updateCategoryType = async (req: Request, res: Response): Promise<v
   }
 };
 
-// Soft delete (disable) a category type
+//  delete (disable) a category type
 export const deleteCategoryType = async (req: Request, res: Response): Promise<void> => {
   try {
     const categoryType = await CategoryTypes.findByPk(req.params.id);
