@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import Brandlist from '../models/Brandlist';
 
-// Get all brandlist entries
+//  all brandlist entries
 export const getAllBrandlists = async (req: Request, res: Response) => {
   try {
     const brandlists = await Brandlist.findAll();
@@ -13,7 +13,7 @@ export const getAllBrandlists = async (req: Request, res: Response) => {
   }
 };
 
-// Get a specific brandlist by ID
+//  specific brandlist by ID
 export const getBrandlistById = async (req: Request, res: Response) => {
   const { id } = req.params;
   try {
@@ -48,7 +48,7 @@ export const createBrandlist = async (req: Request, res: Response) => {
   }
 };
 
-// Update an existing brandlist entry
+// Update  brandlist entry
 export const updateBrandlist = async (req: Request, res: Response) => {
   const { id } = req.params;
   const { name, link, type, isDisabled, createdAt, updatedAt } = req.body;
@@ -73,7 +73,7 @@ export const updateBrandlist = async (req: Request, res: Response) => {
   }
 };
 
-// Delete a brandlist entry
+// Delete  brandlist entry
 export const deleteBrandlist = async (req: Request, res: Response) => {
   const { id } = req.params;
   try {
