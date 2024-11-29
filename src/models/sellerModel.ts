@@ -17,8 +17,8 @@ class Seller extends Model {
   public state!: string; // State
   public alternateMobile!: string | null; // Optional alternate mobile number
   public isDisabled!: boolean; // Disabled status (0 or 1)
-  public createdAt!: Date; // Timestamp of creation
-  public updatedAt!: Date; // Timestamp of last update
+  public createdAt!: Date; 
+  public updatedAt!: Date; 
 }
 
 Seller.init(
@@ -83,7 +83,7 @@ Seller.init(
     sequelize,
     modelName: 'Seller',
     tableName: 'sellerlist', // Matches the table name
-    timestamps: true, // Automatically adds `createdAt` and `updatedAt` fields
+    timestamps: true, 
   }
 );
 
