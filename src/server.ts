@@ -12,6 +12,24 @@ import inventoryRoutes from './routes/inventoryRoutes';
 import inventoryListRoutes from './routes/inventoryListRoutes'; 
 import inventoryTransactionRoutes from './routes/inventoryTransactionRoutes';
 import sellerRoutes from './routes/sellerRoutes';
+import userRoutes from './routes/userRoutes';
+import userAddressRoutes from './routes/userAddressRoutes';
+import userDetailRoutes from './routes/userDetailRoutes';
+import userLoginRoutes from './routes/userLoginRoutes'; 
+import userRegistrationRoutes from './routes/userRegistrationRoutes';
+import userSessionRoutes from './routes/userSessionRoutes'; 
+import orderListRouter from './routes/orderListrouter';
+import orderItemRouter from './routes/orderitemRoutes';
+import orderDispatchDetailRoutes from './routes/orderDispatchDetailRoutes'; 
+import orderDeliveryDetailRoutes from './routes/orderDeliveryDetailRoutes';
+import orderDispatchItemRoutes from './routes/OrderDispatchItemRoutes';
+import OrderInvoiceDetailRoutes from './routes/OrderInvoiceDetailRoutes';
+import orderInventoryDetailRoutes from './routes/orderInventoryDetailRoutes';  
+import orderRequestForCancellationListRoutes from './routes/orderRequestForCancellationListRoutes';
+import cartRouter from './routes/cartRoutes';  
+import paymentTransactionRoutes from './routes/paymentTransactionRoutes';
+import razorpayOrderRoutes from './routes/razorpayorderRoutes';
+import settingRoutes from './routes/settingRoutes';
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -19,41 +37,36 @@ const port = process.env.PORT || 5000;
 // Middleware to parse JSON requests
 app.use(express.json());
 
-// Use brandlist routes for managing brand lists
+// API Routes
 app.use('/api/brandlist', brandlistRoutes);
-
-
-// Routes for category types and category dimensions
 app.use('/api/category-dimensions', categoryDimensionRoutes);
 app.use('/api/categorytypes', categoryTypesRoutes);
-
-// Routes
 app.use('/api/contact-us', contactusRoutes);
-
-// Routes
-app.use('/api/locations', locationsRoutes); // Register locations routes
-
-// product routes
+app.use('/api/locations', locationsRoutes); 
 app.use('/api/products', productRoutes);
-
-
-// Use product dimension routes
-app.use('/productdimensions', productDimensionRoutes);
-
-
-// Inventory Routes
+app.use('/api/productdimensions', productDimensionRoutes);  
 app.use('/api/inventory', inventoryRoutes);
-
-
-// Define routes
-app.use('/inventorylist', inventoryListRoutes); // Use your inventory list routes
-
-// API Routes
+app.use('/api/inventorylist', inventoryListRoutes); 
 app.use('/api/inventory-transactions', inventoryTransactionRoutes);
-
-// Seller Routes
 app.use('/api/sellers', sellerRoutes);
-
+app.use('/api/user', userRoutes);  //http://localhost:5000/api/user/users
+app.use('/api/useraddress', userAddressRoutes); //http://localhost:5000/api/useraddress/address
+app.use('/api/userdetail', userDetailRoutes);
+app.use('/api/userlogin', userLoginRoutes);
+app.use('/api/user-registrations', userRegistrationRoutes);
+app.use('/api/user-session', userSessionRoutes);
+app.use('/api/orders', orderListRouter);
+app.use('/api/orderitems', orderItemRouter);  
+app.use('/api/orderdispatchdetails', orderDispatchDetailRoutes);  
+app.use('/api/orderdeliverydetails', orderDeliveryDetailRoutes);
+app.use('/api/orderdispatchitems', orderDispatchItemRoutes);
+app.use('/api/orderinvoicedetail', OrderInvoiceDetailRoutes);
+app.use('/api/orderinventorydetails', orderInventoryDetailRoutes);
+app.use('/api/orderrequestforcancellation', orderRequestForCancellationListRoutes);
+app.use(cartRouter);  //  cart routes
+app.use('/api/paymenttransactions', paymentTransactionRoutes);
+app.use('/api/razorpayorders', razorpayOrderRoutes); 
+app.use('/api/settings', settingRoutes);
 
 
 // Setup Swagger API documentation
