@@ -1,5 +1,7 @@
+//src/controllers/brandlistController.ts
+
 import { Request, Response } from 'express';
-import Brandlist from '../models/Brandlist';
+import Brandlist from '../models/brandlist';  
 
 //  all brandlist entries
 export const getAllBrandlists = async (req: Request, res: Response) => {

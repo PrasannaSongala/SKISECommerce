@@ -1,5 +1,7 @@
+//src/controllers/locationsController.ts
+
 import { Request, Response } from 'express';
-import Location from '../models/Locations';
+import Location from '../models/locations';
 
 // Get all locations
 export const getAllLocations = async (req: Request, res: Response): Promise<void> => {
@@ -17,7 +19,7 @@ export const getLocationById = async (req: Request, res: Response): Promise<void
     const location = await Location.findByPk(req.params.id);
     if (!location) {
       res.status(404).json({ message: 'Location not found' });
-      return; // Explicitly stop execution
+      return; 
     }
     res.json(location);
   } catch (error) {

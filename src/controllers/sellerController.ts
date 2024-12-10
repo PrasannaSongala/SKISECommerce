@@ -1,7 +1,7 @@
 // src/controllers/sellerController.ts
 import { Request, Response } from 'express';
-import { Op } from 'sequelize'; // Import Sequelize Op module for operators
-import Seller from '../models/sellerModel';
+import { Op } from 'sequelize'; 
+import Seller from '../models/sellerlist';
 
 // Create Seller
 export const createSeller = async (req: Request, res: Response): Promise<Response> => {
@@ -47,8 +47,7 @@ export const createSeller = async (req: Request, res: Response): Promise<Respons
       city,
       state,
       alternateMobile,
-      isDisabled: false, // Default value: Seller is active upon creation
-    });
+      isDisabled: false,   });
 
     return res.status(201).json({
       message: 'Seller created successfully',
@@ -68,7 +67,7 @@ export const getAllSellers = async (req: Request, res: Response): Promise<Respon
   try {
     // Fetch only active sellers
     const sellers = await Seller.findAll({
-      where: { isDisabled: false }, // Only fetch active sellers
+      where: { isDisabled: false }, 
     });
 
     return res.status(200).json({ sellers });
@@ -113,7 +112,7 @@ export const disableSeller = async (req: Request, res: Response): Promise<Respon
       return res.status(404).json({ message: 'Seller not found' });
     }
 
-    seller.isDisabled = true; // Disable seller
+    seller.isDisabled = true; 
     await seller.save();
 
     return res.status(200).json({ message: 'Seller disabled successfully' });
@@ -133,7 +132,6 @@ export const updateSeller = async (req: Request, res: Response): Promise<Respons
   const { name, companyName, gstin, mobileNumber, emailId, line1, line2, pincode, city, state, alternateMobile } = req.body;
 
   try {
-    // Fetch  seller by ID
     const seller = await Seller.findByPk(sellerId);
 
     if (!seller) {

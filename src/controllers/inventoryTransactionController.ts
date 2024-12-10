@@ -1,3 +1,5 @@
+//src/controllers/inventoryTransactionController.ts
+
 import { Request, Response } from 'express';
 import InventoryTransaction from '../models/InventoryTransaction';
 

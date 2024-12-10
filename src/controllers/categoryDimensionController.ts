@@ -1,5 +1,8 @@
+//src/controllers/categoryDimensionController.ts 
+
 import { Request, Response } from 'express';
 import CategoryDimension from '../models/CategoryDimension';
+import  CategoryType  from '../models/categorytypes';
 
 export const getAllCategoryDimensions = async (req: Request, res: Response): Promise<void> => {
   try {
@@ -27,6 +30,14 @@ export const getCategoryDimensionById = async (req: Request, res: Response): Pro
 export const createCategoryDimension = async (req: Request, res: Response): Promise<void> => {
   try {
     const { dimensionId, categoryId } = req.body;
+
+    // Validate that the categoryId exists in the categorytypes table
+    const categoryExists = await CategoryType.findByPk(categoryId);
+    if (categoryId !== null && !categoryExists) {
+      res.status(400).json({ error: 'Invalid categoryId. Category does not exist in categorytypes table.' });
+      return;
+    }
+
     const newDimension = await CategoryDimension.create({ dimensionId, categoryId });
     res.status(201).json(newDimension);
   } catch (error) {
@@ -38,6 +49,14 @@ export const updateCategoryDimension = async (req: Request, res: Response): Prom
   try {
     const { id } = req.params;
     const { dimensionId, categoryId } = req.body;
+
+    // Validate that the categoryId exists in the categorytypes table
+    const categoryExists = await CategoryType.findByPk(categoryId);
+    if (categoryId !== null && !categoryExists) {
+      res.status(400).json({ error: 'Invalid categoryId. Category does not exist in categorytypes table.' });
+      return;
+    }
+
     const dimension = await CategoryDimension.findByPk(id);
     if (!dimension) {
       res.status(404).json({ error: 'Category dimension not found.' });

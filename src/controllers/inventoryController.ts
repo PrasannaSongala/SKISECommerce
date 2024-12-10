@@ -1,5 +1,7 @@
+//src/controllers/inventoryController.ts
+
 import { Request, Response } from 'express';
-import Inventory from '../models/inventoryModel'; // Sequelize model
+import Inventory from '../models/inventoryModel'; 
 
 export const createInventory = async (req: Request, res: Response) => {
   const { name, quantity, price } = req.body;
