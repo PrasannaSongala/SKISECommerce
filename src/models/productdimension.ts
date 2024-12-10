@@ -1,6 +1,6 @@
 // src/models/productdimension.ts
 import { DataTypes, Model } from 'sequelize';
-import sequelize from '../config/database'; // Adjust path based on your setup
+import sequelize from '../config/database'; 
 
 class ProductDimension extends Model {
   id!: number;
@@ -44,7 +44,7 @@ ProductDimension.init(
   {
     sequelize,
     tableName: 'productdimensions',
-    timestamps: false, // Disable automatic timestamp columns (if needed)
+    timestamps: false, 
   }
 );
 

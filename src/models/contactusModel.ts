@@ -1,3 +1,5 @@
+//src/models/contactusModel.ts
+
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/database';
 

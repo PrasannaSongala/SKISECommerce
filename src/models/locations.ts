@@ -1,3 +1,5 @@
+//src/models/locations.ts
+
 import { DataTypes, Model, Optional } from 'sequelize';
 import sequelize from '../config/database';
 
@@ -13,7 +15,8 @@ interface LocationAttributes {
   isDefault: boolean;
 }
 
-interface LocationCreationAttributes extends Optional<LocationAttributes, 'id'> {}
+interface LocationCreationAttributes 
+extends Optional<LocationAttributes, 'id'> {}
 
 class Location extends Model<LocationAttributes, LocationCreationAttributes> implements LocationAttributes {
   public id!: number;

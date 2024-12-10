@@ -1,16 +1,18 @@
+//src/models/CategoryDimension.ts
+
 import { DataTypes, Model, Optional } from 'sequelize';
 import sequelize from '../config/database';
 
-// Attributes of the CategoryDimension model
+// Attributes CategoryDimension model
 interface CategoryDimensionAttributes {
   id: number;
   dimensionId: string;
   createdAt?: Date;
   updatedAt?: Date;
-  categoryId: number;
+  categoryId: number | null; 
 }
 
-// Creation attributes when a new CategoryDimension is created
+// when a new CategoryDimension is created
 interface CategoryDimensionCreationAttributes
   extends Optional<CategoryDimensionAttributes, 'id' | 'createdAt' | 'updatedAt'> {}
 
@@ -20,7 +22,7 @@ class CategoryDimension
 {
   public id!: number;
   public dimensionId!: string;
-  public categoryId!: number;
+  public categoryId!: number | null; 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
 }
@@ -46,7 +48,7 @@ CategoryDimension.init(
     },
     categoryId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true, 
     },
   },
   {

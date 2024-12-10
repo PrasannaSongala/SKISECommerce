@@ -1,5 +1,7 @@
+//src/models/inventoryModel.ts
+
 import { DataTypes, Model } from 'sequelize';
-import sequelize from '../config/database'; // Sequelize instance
+import sequelize from '../config/database'; 
 
 class Inventory extends Model {
   public id!: number;
@@ -40,8 +42,8 @@ Inventory.init(
   },
   {
     sequelize,
-    tableName: 'inventory', // Table name in MySQL
-    timestamps: false, // Optional: if you want to handle createdAt/updatedAt manually
+    tableName: 'inventory', 
+    timestamps: false,
   }
 );
 

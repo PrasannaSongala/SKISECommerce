@@ -1,11 +1,12 @@
 import { Model, DataTypes } from 'sequelize';
-import sequelize from '../config/database'; // Corrected import
+import sequelize from '../config/database'; 
 
-class Product extends Model {
+// Define the ProductList model
+export class ProductList extends Model {
   id!: number;
   name!: string;
-  imageLink!: string;
-  description!: string;
+  imageLink?: string;
+  description?: string;
   primaryRate!: number;
   cgstPercent!: number;
   igstPercent!: number;
@@ -16,18 +17,19 @@ class Product extends Model {
   isDisabled!: boolean;
   createdAt!: Date;
   updatedAt!: Date;
-  categoryId!: number;
-  brandId!: number;
-  inventoryId!: number;
-  locationId!: number;
+  categoryId?: number;
+  brandId?: number;
+  inventoryId?: number;
+  locationId?: number;
 }
 
-Product.init(
+ProductList.init(
   {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
+      allowNull: false,
     },
     name: {
       type: DataTypes.STRING(50),
@@ -59,55 +61,66 @@ Product.init(
     },
     conversionRatio: {
       type: DataTypes.FLOAT,
+      defaultValue: 1,
       allowNull: true,
     },
     hsnCode: {
       type: DataTypes.STRING(255),
-      allowNull: true,
+      allowNull: false,
     },
     isDeleted: {
-      type: DataTypes.TINYINT,
-      defaultValue: 0, // Defaults to 0 (not deleted)
-      allowNull: false,
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
     },
     isDisabled: {
-      type: DataTypes.TINYINT,
-      defaultValue: 0, // Defaults to 0 (enabled)
-      allowNull: false,
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
     },
     createdAt: {
       type: DataTypes.DATE,
-      defaultValue: sequelize.fn('NOW'), // Corrected to use sequelize.fn('NOW')
       allowNull: false,
     },
     updatedAt: {
       type: DataTypes.DATE,
-      defaultValue: sequelize.fn('NOW'), // Corrected to use sequelize.fn('NOW')
       allowNull: false,
     },
     categoryId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      references: {
+        model: 'categorytypes',
+        key: 'id',
+      },
     },
     brandId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      references: {
+        model: 'brandlist',
+        key: 'id',
+      },
     },
     inventoryId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      references: {
+        model: 'inventorylist',
+        key: 'id',
+      },
     },
     locationId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      references: {
+        model: 'locations',
+        key: 'id',
+      },
     },
   },
   {
-    sequelize, // Sequelize instance
-    modelName: 'Product',
+    sequelize,
+    modelName: 'ProductList',
     tableName: 'productlist',
-    timestamps: false, // Disable automatic timestamp handling if you prefer manual control
+    timestamps: false,
   }
 );
 
-export default Product;
+export default ProductList;
+
+

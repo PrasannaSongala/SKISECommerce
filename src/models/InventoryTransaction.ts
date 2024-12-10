@@ -1,7 +1,13 @@
+//src/models/InventoryTransaction.ts
+
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../config/database';
+import Sellerlist from './sellerlist';  
+import InventoryList from './inventoryList';  
 
-class InventoryTransaction extends Model {}
+class InventoryTransaction extends Model {
+  
+}
 
 InventoryTransaction.init(
   {
@@ -89,5 +95,15 @@ InventoryTransaction.init(
     timestamps: true,
   }
 );
+
+//  associations
+InventoryTransaction.belongsTo(Sellerlist, {
+  foreignKey: 'sellerId',
+  as: 'seller',  
+});
+InventoryTransaction.belongsTo(InventoryList, {
+  foreignKey: 'inventoryId',
+  as: 'inventory',  
+});
 
 export default InventoryTransaction;
