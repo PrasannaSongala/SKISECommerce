@@ -1,3 +1,5 @@
+//src/routes/inventoryTransactionRoutes.ts
+
 import { Router } from 'express';
 import asyncHandler from 'express-async-handler';
 import {

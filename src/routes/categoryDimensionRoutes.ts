@@ -1,3 +1,5 @@
+//src/routes/categoryDimensionRoutes.ts
+
 import { Router } from 'express';
 import asyncHandler from 'express-async-handler';
 import {
@@ -115,6 +117,9 @@ export default router;
  *               categoryId:
  *                 type: integer
  *                 example: 1
+ *             required:
+ *               - dimensionId
+ *               - categoryId
  *     responses:
  *       201:
  *         description: Category dimension created
@@ -135,6 +140,8 @@ export default router;
  *                 updatedAt:
  *                   type: string
  *                   format: date-time
+ *       400:
+ *         description: Invalid input data
  *       500:
  *         description: Server error
  */
@@ -165,6 +172,9 @@ export default router;
  *               categoryId:
  *                 type: integer
  *                 example: 2
+ *             required:
+ *               - dimensionId
+ *               - categoryId
  *     responses:
  *       200:
  *         description: Category dimension updated
@@ -187,6 +197,8 @@ export default router;
  *                   format: date-time
  *       404:
  *         description: Category dimension not found
+ *       400:
+ *         description: Invalid input data
  *       500:
  *         description: Server error
  */
